@@ -1,29 +1,47 @@
 <?php
   echo "<pre>";
-
-    // var_dump関数は連想配列の中身を確認する時に使用。<pre>タグは連想配列の出力を見やすくするために使用。
-    // var_dumpはデータ型も確認できる。
-    // $_POSTはPHPが自動で生成する連想配列。HTMLフォームのデータを自動で格納することができる。
-    // 最初の段階ではキーがない連想配列。
-    // HTMLのname属性の値が連想配列のキーの名前になる。
     var_dump($_POST);
-
   echo "</pre>";
-?>
+
+  // 連想配列を定義
+  $errors = array();
+
+  // isset関数は変数や連想配列がセットされており、値がNULLでないかを確認する。NULLであればtrueを返す。
+  // $_POST['submit']のデータを関数に渡す。
+  if(isset($_POST['submit'])) {
+  
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $subject = $_POST['subject'];
+    $body = $_POST['body'];
+    
+    if($name === "") {
+      $errors['name'] = "お名前が入力されていません。";
+    }
+    
+    if($email === "") {
+      $errors['email'] = "メールアドレスが入力されていません。";
+    }
+    
+    if($body === "") {
+      $errors['body'] = "お問い合わせ内容が入力されていません。";
+    }
+    
+  }
+
+  echo "<pre>";
+  var_dump($errors);
+  echo "</pre>";
+  ?>
 
 <!doctype html>
 <html>
-
   <head>
     <meta charset="utf-8">
     <title>お問い合わせ</title>
   </head>
-
   <body>
-    <!-- action属性の値にはフォームの送信先のURLを書く。今回は自分自身のファイルに送信している。
-    [確認画面へ]ボタンがクリックされると、再度form3.phpがWebサーバ側で実行される -->
-    <!-- method属性の値はHTTPプロトコルのメソッドを指定。 -->
-    <form action="practice3.php" method="post">
+    <form action="practice4.php" method="post">
       <table>
 
         <tr>
@@ -60,5 +78,4 @@
       </table>
     </form>
   </body>
-
 </html>
