@@ -43,10 +43,17 @@
       // 画面遷移先を指定。
       // header関数はサーバからブラウザへのレスポンスにヘッダ情報を付加させる関数。
       // Locationヘッダを追加することで、ブラウザ側はすぐにそのページをサーバに再度リクエストする。
-      header('Location: http://localhost/php_form/practice7.php');
+      header('Location: http://localhost:8080/php_form/practice7.php');
       exit();
     }
   
+  }
+
+  if(isset($_GET['action']) && $_GET['action'] === 'edit') {
+    $name = $_SESSION['name'];
+    $email = $_SESSION['email'];
+    $subject = $_SESSION['subject'];
+    $body = $_SESSION['body'];
   }
 
 ?>
@@ -74,7 +81,7 @@
       echo "</ul>";
     ?>
 
-    <form action="practice5.php" method="post">
+    <form action="practice6.php" method="post">
       <table>
 
       <tr>
