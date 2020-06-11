@@ -8,6 +8,13 @@
       $subject = $_SESSION['subject'];
       $body = $_SESSION['body'];
     }
+
+    // openssl_random_pseudo_bytes関数は、擬似乱数のバイト文字列を生成する
+    // base64_encode関数はMIMEbase64方式でデータをエンコードする関数
+    // SESSION['token]にランダムな文字列が代入される
+    $_SESSION['token'] = base64_encode(openssl_random_pseudo_bytes(48));
+    $token = htmlspecialchars($_SESSION['token'], ENT_QUOTES);
+
 ?>
 
 <!doctype html>
@@ -16,7 +23,8 @@
   <meta charset="utf-8">
   </head>
   <body>
-    <form action="form3.php" method="post">
+    <form action="practice8.php" method="post">
+    <input type="hidden" name="token" value="<?php echo $token ?>">
       <table>
 
         <tr>
