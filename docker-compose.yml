@@ -14,6 +14,7 @@ services:
     build: ./Docker/php
     volumes:
       - ./www/html:/var/www/html
+      - ./Docker/php/php.ini:/usr/local/etc/php/conf.d/php.ini
     depends_on:
       - db
 
@@ -24,7 +25,6 @@ services:
     volumes:
       - ./Docker/init/mysql:/var/lib/mysql
     environment:
-      MYSQL_DATABASE: dbname
       MYSQL_ROOT_PASSWORD: secret
 
   phpmyadmin:
