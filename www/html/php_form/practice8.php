@@ -3,7 +3,14 @@
 
   if(isset($_POST['token'], $_SESSION['token']) && ($_POST['token'] === $_SESSION['token'])) {
     unset($_SESSION['token']);
-    echo "きちんとしたアクセスです";
+    $dsn = 'mysql:dbname=contact_form;host=192.168.96.2;charset=utf8';
+    $user = 'root';
+    $password = 'secret';
+
+    $dbh = new PDO($dsn, $user, $password);
+    var_dump($dbh);
+    $dbh = null;
+
   }else{
     header('Location: http://localhost:8080/php_form/practice6.php');
     exit();
